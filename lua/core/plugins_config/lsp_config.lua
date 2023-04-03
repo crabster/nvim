@@ -13,9 +13,13 @@ local on_attach = function(_, _)
     vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, {})
     vim.keymap.set("n", "<leader>gr", telescope.lsp_references, {})
     vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 end
 
-require("lspconfig").lua_ls.setup {
+local lspconfig = require("lspconfig")
+
+lspconfig.lua_ls.setup {
     on_attach = on_attach,
     settings = {
         Lua = {
@@ -25,3 +29,25 @@ require("lspconfig").lua_ls.setup {
         }
     }
 }
+
+lspconfig.rust_analyzer.setup {
+    on_attach = on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importGranularity = "module",
+                importPrefix = "by_self"
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            }
+        }
+    }
+}
+
+lspconfig.clangd.setup({})
+
+lspconfig.tsserver.setup({})
