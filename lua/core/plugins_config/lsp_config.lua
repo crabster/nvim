@@ -3,6 +3,11 @@ require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls" }
 })
 
+vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
+
 local telescope = require('telescope.builtin')
 
 local on_attach = function(_, _)
@@ -48,6 +53,10 @@ lspconfig.rust_analyzer.setup {
     }
 }
 
-lspconfig.clangd.setup({})
+lspconfig.clangd.setup({
+    on_attach = on_attach,
+})
 
-lspconfig.tsserver.setup({})
+lspconfig.tsserver.setup({
+    on_attach = on_attach,
+})
