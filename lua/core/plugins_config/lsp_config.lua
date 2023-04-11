@@ -55,8 +55,13 @@ lspconfig.rust_analyzer.setup {
 
 lspconfig.clangd.setup({
     on_attach = on_attach,
+    filetypes = { "c", "cpp", "objc", "objcpp" },
 })
 
 lspconfig.tsserver.setup({
+    on_attach = on_attach,
+})
+
+lspconfig.bufls.setup({
     on_attach = on_attach,
 })

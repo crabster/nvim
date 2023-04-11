@@ -5,7 +5,7 @@ vim.opt.cursorline = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 
-vim.opt.mouse = "a"
+vim.opt.mouse = ""
 vim.opt.autoindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
