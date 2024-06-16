@@ -13,28 +13,63 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
     use "wbthomason/packer.nvim"
+
+    -- Color scheme
     use { "catppuccin/nvim", as = "catppuccin" }
-    use "nvim-tree/nvim-tree.lua"
+
+    -- File tree
+    -- use "nvim-tree/nvim-tree.lua"
+
+    -- Pretty icons
     use "nvim-tree/nvim-web-devicons"
+
+    -- Bottom status bar
     use "nvim-lualine/lualine.nvim"
+
+    -- Easy commenting of text
     use "numToStr/Comment.nvim"
+
+    -- Colored backgrounds of RGB numbers corresponding to their values
     use "norcalli/nvim-colorizer.lua"
 
+    -- AST code parser
     use "nvim-treesitter/nvim-treesitter"
     use "nvim-treesitter/playground"
 
-    use "github/copilot.vim"
-
+    -- Package manager for language specific tools
     use {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
     }
 
+    -- Fuzzy finder
     use {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.0",
         requires = { { "nvim-lua/plenary.nvim" } }
+    }
+
+    -- Visible indentation
+    use "lukas-reineke/indent-blankline.nvim"
+
+    use {
+        'Wansmer/treesj',
+        requires = { 'nvim-treesitter/nvim-treesitter' },
+    }
+
+    use {
+      'VonHeikemen/lsp-zero.nvim',
+      branch = 'v3.x',
+      requires = {
+        --- Uncomment the two plugins below if you want to manage the language servers from neovim
+        -- {'williamboman/mason.nvim'},
+        -- {'williamboman/mason-lspconfig.nvim'},
+
+        {'neovim/nvim-lspconfig'},
+        {'hrsh7th/nvim-cmp'},
+        {'hrsh7th/cmp-nvim-lsp'},
+        {'L3MON4D3/LuaSnip'},
+      }
     }
 
     -- Automatically set up your configuration after cloning packer.nvim
