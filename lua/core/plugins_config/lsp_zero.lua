@@ -6,14 +6,7 @@ lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.default_keymaps({ buffer = bufnr })
 
     -- Format on save
-    vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
-    vim.api.nvim_create_autocmd('BufWritePre', {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format()
-        end,
-    })
+    lsp_zero.buffer_autoformat()
 end)
 
 -- to learn how to use mason.nvim
